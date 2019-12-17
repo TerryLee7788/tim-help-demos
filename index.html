@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tim jQuery validation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+    <style>
+        form label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        form div {
+            margin-bottom: 10px;
+        }
+
+        input.error,
+        label.error {
+            color: red;
+        }
+
+        input.error {
+            border: 1px solid red;
+            margin-right: 4px;
+        }
+
+        label.error {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <form class="cmxform" id="commentForm" method="get" action="">
+        <fieldset>
+          <legend>Please provide your name, email address (won't be published) and a comment</legend>
+          <p>
+            <label for="cname">Name (required, at least 2 characters)</label>
+            <input id="cname" placeholder="請輸入名字" name="name" minlength="2" type="text" required>
+          </p>
+          <p>
+            <label for="cemail">E-Mail (required)</label>
+            <input id="cemail" placeholder="請輸入 email" type="email" name="email" required>
+          </p>
+          <p>
+            <label for="curl">URL (optional)</label>
+            <input id="curl" type="url" name="url">
+          </p>
+          <p>
+            <input class="submit" type="submit" value="Submit">
+          </p>
+        </fieldset>
+      </form>
+      <p>文件1: <a target="_blank" href="https://jqueryvalidation.org/documentation/">validate documentation</a></p>
+      <p>文件2: <a target="_blank" href="https://stackoverflow.com/questions/2457032/jquery-validation-change-default-error-message">jquery-validation-change-default-error-message</a></p>
+    <script>
+        // 覆寫 jQuery validator 預設的錯誤訊息
+        $.extend(jQuery.validator.messages, {
+            required: "此欄位為必填"
+        });
+
+        // 開始使用 jQuery validator
+        $("#commentForm").validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                email: "email 欄位有填錯!!"
+            }
+        })
+
+    </script>
+</body>
+</html>

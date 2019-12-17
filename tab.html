@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        .tab-content {
+            width: 500px;
+            border: 1px solid blue;
+        }
+        .tab {
+            background-color: #ddd;
+            height: 250px;
+            display: none;
+            padding: 8px;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .tab-navbar {
+            background-color: #777;
+            margin: 0;
+        }
+
+        .nav {
+            float: left;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-right: 1px solid #000;
+        }
+
+        .nav.active {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-content">
+
+        <div class="tab-navbar clearfix">
+            <div class="nav active" data-target="1">tab1</div>
+            <div class="nav" data-target="2">tab2</div>
+            <div class="nav" data-target="3">tab3</div>
+        </div>
+
+        <div class="tab active" data-tab="1">
+            this is tab 1
+        </div>
+        <div class="tab" data-tab="2">
+            this is tab 2
+        </div>
+        <div class="tab" data-tab="3">
+            this is tab 3
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+
+            $('.nav').on('click', function () {
+
+                var target = $(this).data('target');
+
+                $('[data-tab]').removeClass('active');
+                $('[data-tab="' + target + '"]').addClass('active');
+
+                $('.nav').removeClass('active');
+                $(this).addClass('active');
+
+            });
+
+        });
+    </script>
+</body>
+</html>
